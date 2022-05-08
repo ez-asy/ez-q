@@ -1,0 +1,21 @@
+[package]
+name = "ez-q"
+description = "A simplicity first message queue"
+version = "0.0.1-alpha"
+edition = "2021"
+license = "MIT"
+license-file = "LICENSE"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "4"
+log = "0.4"
+env_logger = "0.9"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+fred = "4"
+anyhow = "1"
+uuid = { version = "1.0.0-alpha.1", features = ["v4", "fast-rng"] }
+chrono = "0.4"
+derive_more = "0.99.0"
