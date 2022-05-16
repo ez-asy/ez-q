@@ -1,7 +1,7 @@
 use std::{collections::HashMap, str::FromStr};
 
 use anyhow::{anyhow, Result};
-use fred::client::RedisClient;
+use fred::{clients::RedisClient, interfaces::HashesInterface};
 
 use crate::core::message::Message;
 

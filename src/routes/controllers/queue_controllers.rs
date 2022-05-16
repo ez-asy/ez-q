@@ -1,5 +1,5 @@
 use actix_web::{get, post, web, HttpResponse, Responder};
-use fred::pool::StaticRedisPool;
+use fred::pool::RedisPool;
 use serde::{Deserialize, Serialize};
 
 use crate::core::{
@@ -37,7 +37,7 @@ pub struct MessageContentResponse {
 }
 
 #[get("/queues/")]
-pub async fn list_all_queues(redis_pool: web::Data<StaticRedisPool>) -> impl Responder {
+pub async fn list_all_queues(redis_pool: web::Data<RedisPool>) -> impl Responder {
     // Get client from pool
     let redis_client = redis_pool.next();
 
@@ -58,7 +58,7 @@ pub async fn list_all_queues(redis_pool: web::Data<StaticRedisPool>) -> impl Res
 
 #[get("/queues/{queue_name}/message/")]
 pub async fn fetch_message(
-    redis_pool: web::Data<StaticRedisPool>,
+    redis_pool: web::Data<RedisPool>,
     path: web::Path<QueuePath>,
 ) -> impl Responder {
     // Get client from pool
@@ -99,7 +99,7 @@ pub async fn fetch_message(
 
 #[post("/queues/{queue_name}/message/")]
 pub async fn post_message(
-    redis_pool: web::Data<StaticRedisPool>,
+    redis_pool: web::Data<RedisPool>,
     path: web::Path<QueuePath>,
     body: web::Json<PostMessageBody>,
 ) -> impl Responder {

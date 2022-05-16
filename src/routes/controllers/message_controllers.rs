@@ -1,5 +1,5 @@
 use actix_web::{post, web, HttpResponse, Responder};
-use fred::pool::StaticRedisPool;
+use fred::pool::RedisPool;
 use serde::{Deserialize, Serialize};
 
 use crate::core::{
@@ -20,7 +20,7 @@ pub struct FinishMessageResponse {
 
 #[post("/messages/{id}/complete/")]
 pub async fn complete_message(
-    redis_pool: web::Data<StaticRedisPool>,
+    redis_pool: web::Data<RedisPool>,
     path: web::Path<MessagePath>,
 ) -> impl Responder {
     // Get client from pool
@@ -61,7 +61,7 @@ pub async fn complete_message(
 
 #[post("/messages/{id}/fail/")]
 pub async fn fail_message(
-    redis_pool: web::Data<StaticRedisPool>,
+    redis_pool: web::Data<RedisPool>,
     path: web::Path<MessagePath>,
 ) -> impl Responder {
     // Get client from pool

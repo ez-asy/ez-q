@@ -1,5 +1,5 @@
 use anyhow::Result;
-use fred::client::RedisClient;
+use fred::{clients::RedisClient, interfaces::ListInterface};
 
 use super::redis_keys;
 

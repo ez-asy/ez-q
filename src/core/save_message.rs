@@ -1,6 +1,7 @@
 use anyhow::Result;
 use fred::{
-    client::RedisClient,
+    clients::RedisClient,
+    interfaces::HashesInterface,
     types::{RedisMap, RedisValue},
 };
 
@@ -16,15 +17,15 @@ pub async fn save_message(client: &RedisClient, message: Message) -> Result<Stri
     let content: RedisValue = message.content.to_string().into();
     let state: RedisValue = message.state.into();
 
-    let key_value: RedisMap = vec![
+    let key_value: RedisMap = RedisMap::try_from(vec![
         ("id", id_as_value),
         ("queue_name", queue_name),
         ("created_at", created_at),
         ("retry_count", retry_count),
         ("content", content),
         ("state", state),
-    ]
-    .into();
+    ])
+    .unwrap();
 
     let _: u8 = client.hset(redis_keys::message(&id), key_value).await?;
 

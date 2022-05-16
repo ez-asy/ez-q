@@ -1,6 +1,6 @@
 use anyhow::Result;
 use chrono::Utc;
-use fred::{client::RedisClient, types::RedisValue};
+use fred::{clients::RedisClient, interfaces::HashesInterface, types::RedisValue};
 
 use super::redis_keys;
 

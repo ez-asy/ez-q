@@ -1,9 +1,7 @@
 use anyhow::{anyhow, Result};
+use bytes_utils::Str;
 use chrono::Utc;
-use fred::{
-    prelude::RedisError,
-    types::{RedisResponse, RedisValue},
-};
+use fred::types::RedisValue;
 use serde::{Deserialize, Serialize};
 use std::{fmt, str::FromStr};
 use uuid::Uuid;
@@ -47,10 +45,10 @@ pub enum MessageState {
 impl Into<RedisValue> for MessageState {
     fn into(self) -> RedisValue {
         match self {
-            MessageState::Waiting => RedisValue::String("Waiting".to_string()),
-            MessageState::Processing => RedisValue::String("Processing".to_string()),
-            MessageState::Completed => RedisValue::String("Completed".to_string()),
-            MessageState::Failed => RedisValue::String("Failed".to_string()),
+            MessageState::Waiting => RedisValue::String(Str::from("Waiting")),
+            MessageState::Processing => RedisValue::String(Str::from("Processing")),
+            MessageState::Completed => RedisValue::String(Str::from("Completed")),
+            MessageState::Failed => RedisValue::String(Str::from("Failed")),
         }
     }
 }
@@ -80,15 +78,15 @@ impl fmt::Display for MessageState {
     }
 }
 
-impl RedisResponse for MessageState {
-    fn from_values(
-        values: Vec<fred::types::RedisValue>,
-    ) -> Result<Vec<Self>, fred::prelude::RedisError> {
-        values.into_iter().map(|v| Self::from_value(v)).collect()
-    }
+// impl RedisResponse for MessageState {
+//     fn from_values(
+//         values: Vec<fred::types::RedisValue>,
+//     ) -> Result<Vec<Self>, fred::prelude::RedisError> {
+//         values.into_iter().map(|v| Self::from_value(v)).collect()
+//     }
 
-    fn from_value(value: fred::types::RedisValue) -> Result<Self, fred::prelude::RedisError> {
-        Self::from_str(&value.as_str().unwrap())
-            .map_err(|_| (RedisError::new(fred::error::RedisErrorKind::Unknown, "")))
-    }
-}
+//     fn from_value(value: fred::types::RedisValue) -> Result<Self, fred::prelude::RedisError> {
+//         Self::from_str(&value.as_str().unwrap())
+//             .map_err(|_| (RedisError::new(fred::error::RedisErrorKind::Unknown, "")))
+//     }
+// }
