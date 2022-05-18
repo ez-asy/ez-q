@@ -27,4 +27,5 @@ FROM gcr.io/distroless/cc-debian10
 COPY --from=build /ez-q/target/release/ez-q /
 
 # set the startup command to run your binary
+ENV DOCKER_BUILD=1
 ENTRYPOINT ["/ez-q"]

@@ -18,7 +18,7 @@ pub struct FinishMessageResponse {
     id: String,
 }
 
-#[post("/messages/{id}/complete/")]
+#[post("/messages/{msg_id}/complete/")]
 pub async fn complete_message(
     redis_pool: web::Data<RedisPool>,
     path: web::Path<MessagePath>,
@@ -26,6 +26,7 @@ pub async fn complete_message(
     // Get client from pool
     let redis_client = redis_pool.next();
 
+    println!("{:?}", &path.msg_id);
     // Get vec of queue names
     let is_message_removed = match remove_message_from_processing_set(redis_client, &path.msg_id)
         .await
@@ -59,7 +60,7 @@ pub async fn complete_message(
     HttpResponse::Ok().json(response)
 }
 
-#[post("/messages/{id}/fail/")]
+#[post("/messages/{msg_id}/fail/")]
 pub async fn fail_message(
     redis_pool: web::Data<RedisPool>,
     path: web::Path<MessagePath>,
