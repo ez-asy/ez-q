@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkez_q_docs=self.webpackChunkez_q_docs||[]).push([[974],{8043:function(s){s.exports=JSON.parse('{"label":"docusaurus","permalink":"/ez-q/blog/tags/docusaurus","allTagsPath":"/ez-q/blog/tags","count":4}')}}]);
