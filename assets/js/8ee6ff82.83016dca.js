@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkez_q_docs=self.webpackChunkez_q_docs||[]).push([[754],{4316:function(e){e.exports=JSON.parse('{"label":"facebook","permalink":"/ez-q/blog/tags/facebook","allTagsPath":"/ez-q/blog/tags","count":1}')}}]);

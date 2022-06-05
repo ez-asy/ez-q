@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkez_q_docs=self.webpackChunkez_q_docs||[]).push([[34],{5581:function(e){e.exports=JSON.parse('{"label":"release","permalink":"/ez-q/blog/tags/release","allTagsPath":"/ez-q/blog/tags","count":1}')}}]);

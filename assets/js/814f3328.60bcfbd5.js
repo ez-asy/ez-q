@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkez_q_docs=self.webpackChunkez_q_docs||[]).push([[535],{5641:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Alpha Release - Welcome to ez-q","permalink":"/ez-q/blog/first-alpha"}]}')}}]);
